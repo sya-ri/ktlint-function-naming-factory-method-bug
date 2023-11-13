@@ -44,6 +44,7 @@ val ktlintCheck by tasks.registering(JavaExec::class) {
         "**/src/**/*.kt",
         "**.kts",
         "!**/build/**",
+        "--log-level=debug",
     )
 }
 
