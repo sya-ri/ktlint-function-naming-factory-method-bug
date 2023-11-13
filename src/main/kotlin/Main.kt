@@ -1,7 +1,17 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+class NoGenerics(val value: String)
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
-}
+class Generics<T>(val value: T)
+
+// No error
+fun NoGenerics(value: Int): NoGenerics = NoGenerics(value.toString())
+
+// No error
+fun <T> NoGenerics(value: T): NoGenerics = NoGenerics(value.toString())
+
+// Error: support one-liner
+fun NoGenerics(value: Double) = NoGenerics(value.toString())
+
+// Error
+fun <T> Generics(action: () -> T): Generics<T> = Generics(action())
+
+fun main(args: Array<String>) {}
